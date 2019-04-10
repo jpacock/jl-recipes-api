@@ -24,6 +24,7 @@ module.exports.create = (event, context, callback) => {
       title: data.title,
       description: data.description,
       ingredients: data.ingredients,
+      directions: data.directions,
       createdAt: timestamp,
       updatedAt: timestamp,
     },
@@ -45,6 +46,10 @@ module.exports.create = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify(params.Item),
     };
     callback(null, response);
