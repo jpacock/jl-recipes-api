@@ -3,20 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "serverless-http": "^1.9.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpacock/jl-recipes-api.git"
   },
-  "devDependencies": {
-    "serverless-mocha-plugin": "^1.10.0",
-    "serverless-dynamodb-local": "^0.2.18",
-    "serverless-offline": "^4.9.4"
-  }
+  "author": "Jordan Acock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpacock/jl-recipes-api/issues"
+  },
+  "homepage": "https://github.com/jpacock/jl-recipes-api#readme"
 }
