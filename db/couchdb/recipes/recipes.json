@@ -1,0 +1,12 @@
+{
+  "_id": "_design/recipes",
+  "views": {
+    "recipes": {
+      "map": "(function (doc) {\n  if (doc.name && doc.recipeMetadata) {\n    emit(doc.name, doc);\n  }\n});"
+    },
+    "recipesByCategory": {
+      "map": "(function (doc) {\n  if (doc.name && doc.recipeMetadata && doc.recipeMetadata.categories) {\n    doc.recipeMetadata.categories.map(function (recipe) {\n      emit(recipe, doc);\n    });\n  }\n});",
+      "reduce": "(function (keys, values, rereduce) {\n  if (rereduce) {\n    return sum(values);\n  }\n\n  return values.length;\n});"
+    }
+  }
+}

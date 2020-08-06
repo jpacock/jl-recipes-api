@@ -1,0 +1,9 @@
+{
+  "_id": "_design/categories",
+  "views": {
+    "categories": {
+      "map": "(function (doc) {\n  if (doc.name && doc.recipeMetadata && doc.recipeMetadata.categories) {\n    doc.recipeMetadata.categories.map(function (category) {\n      emit(category, null);\n    });\n  }\n});",
+      "reduce": "(function (keys, value) {\n  return true;\n});"
+    }
+  }
+}

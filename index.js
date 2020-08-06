@@ -6,6 +6,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,7 +19,8 @@ const db = process.env.CLOUDANT_DB;
 const cloudant = Cloudant({ account: dbUser, password: dbPass });
 
 
-// console.log(dbUser, dbPass, db)
+//enable cors
+app.use(cors());
 
 // create recipe
 app.post('/api/v1/recipes', (req, res) => {
@@ -43,24 +45,21 @@ app.post('/api/v1/recipes', (req, res) => {
 
 // get all recipes
 app.get('/api/v1/recipes', (req, res) => {
-
-    cloudant.use(db).list({include_docs:true}, (err, data) => {
-        // console.log(data.rows[0].doc);
+    cloudant.use(db).list({ include_docs: true }, (err, data) => {
         const recipes = data.rows.map(row => row.doc)
 
         return res.status(201).send({
             success: 'true',
             message: 'recipes retrieved successfully',
             recipes: recipes
-        })
-    })
-    
-
-    
+        });
+    });
 });
 
 // get recipe by name
-
+app.get('/api/v1/recipes/:id', (req, res) => {
+    cloudant.use(db)
+});
 
 // delete recipe
 
